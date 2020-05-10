@@ -52,17 +52,23 @@ const MoveFighter = (entities, { touches }) => {
   touches.filter(t => t.type === "move").forEach(t => {
        
     let finger = entities[2];
+    let finger2 = entities[3];
     
     if (finger && finger.position) {
       finger.position = [
         finger.position[0] + t.delta.pageX,
         finger.position[1] + t.delta.pageY
       ];
-      
-      
     }
+     if (finger2 && finger2.position) {
+       finger2.position = [
+         finger2.position[0] + t.delta.pageX,
+         finger2.position[1] + t.delta.pageY,
+       ];
+     }
+    
   });
- 
+  
   return entities;
 };
  

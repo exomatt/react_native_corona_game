@@ -5,24 +5,23 @@ import SpriteSheet from 'rn-sprite-sheet';
 class Sight extends PureComponent {
   constructor(props) {
     super(props);
-
     renderers[this.props.id] = this;
-    this.animatedValue = new Animated.Value(0);
-
-    this.play();
+    this.isAnimating = false;
   }
 
-  play = () => {
-    // this.animatedValue.setValue(0);
+  play = (type) => {
+    this.isAnimating = true;
+    this.mummy.play({
+      type,
+      fps: 24,
+      loop: true,
+      resetAfterFinish: true,
+      onFinish: () => console.log('hi'),
+    });
+  };
 
-    // // var animation = Animated.timing(this.animatedValue, {
-    // //   toValue: 1,
-    // //   duration: 8000,
-    // //   easing: Easing.linear,
-    // //   useNativeDriver: true, // <-- Add this
-    // // });
-
-    // Animated.loop(animation).start(); //zapetlenie
+  stop = () => {
+    this.mummy.stop(() => console.log('stopped'));
   };
 
   render() {
@@ -30,33 +29,34 @@ class Sight extends PureComponent {
     const y = this.props.position[1];
 
     return (
-      <Animated.View
+      <View
         style={{
           overflow: 'hidden',
-          width: 80,
-          height: 80,
+          width: 412,
+          height: 684,
           position: 'absolute',
-          transform: [
-            {translateX: x},
-            {
-              translateY: this.animatedValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: [-80, 684],
-              }),
-            },
-          ],
+          left: x,
+          top: y,
         }}>
-        <Image
-          style={{
-            height: 80,
-            width: 80,
-            top: 0,
-            left: 0,
-            resizeMode: 'stretch',
-          }}
+        <SpriteSheet
+          ref={(ref) => (this.mummy = ref)}
           source={require('../images/celownik.png')}
+          columns={1} // zakladamy że obraz kolejne klatki animacji umieszczone są w obrazie na rownomiernej siatce
+          rows={1} // o podanych wymiarach liczba wierszy x liczba kolumn, klatki numerowane są od 0 od lewej do prawej, z góry na dół
+          height={80} // set either, none, but not both (blokada aspect-ratio)
+          // width={200}
+          imageStyle={{
+            marginTop: -1,
+            left: 0,
+            top: 0,
+          }}
+          animations={{
+            idle: [0], // numery klatek towrzących animacje, mozna dodawac kolejne sekwencje
+            // wystarczy tylko przyszkowac odpowiedni szablon (sheet)
+            // np. przy użyciu GIMPa i znalezisk na www.OpenGameArt
+          }}
         />
-      </Animated.View>
+      </View>
     );
   }
 }

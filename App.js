@@ -55,13 +55,13 @@ export default class BestGameEver extends PureComponent {
           }, // fajter
           3: {
             id: 3,
-            type: 's',
-            position: [width / 2 - 64, height - 200],
+            type: 'f',
+            position: [width / 2 - 40, height - 280],
             renderer: <Sight />,
           }, // fajter
-          4: {id: 3, type: 'v', position: [10, 0], renderer: Virus}, // zaraza
-          5: {id: 4, type: 'v', position: [20, 0], renderer: Virus},
-          6: {id: 5, type: 'v', position: [40, 0], renderer: Virus},
+          4: {id: 4, type: 'v', position: [10, 0], renderer: Virus}, // zaraza
+          5: {id: 5, type: 'v', position: [20, 0], renderer: Virus},
+          6: {id: 6, type: 'v', position: [40, 0], renderer: Virus},
         }}>
         <StatusBar hidden={true} />
       </GameEngine>
