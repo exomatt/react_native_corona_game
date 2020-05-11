@@ -15,8 +15,8 @@ class Bar extends PureComponent {
 
   render() {
     if (this.props.lifes === 0) {
-      console.log('Przekierowuje');
-      console.log(this.props);
+      // console.log('Przekierowuje');
+      // console.log(this.props);
       this.props.navigation.navigate('Result', {
         result: 3,
         updateData: this.onSelect,

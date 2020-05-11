@@ -1,4 +1,4 @@
-var shoot = false 
+var shoot = false;
 const VirusSpawner = (entities, {touches, time}) => {
   // petla logiki jest uruchamiana co 16ms... w teorii, w praktyce sa to pobozne zyczenia
   // i odstep czasowy miedzy kolejnymi wywolaniami tej funckji moze wyniesc nawet 100-200ms szczegolnie w emulatorach
@@ -31,6 +31,23 @@ const VirusSpawner = (entities, {touches, time}) => {
             entities[id].hited = 0;
           }
         }
+        // console.log('poz 1 ' + x + '   ' + y);
+        // console.log(
+        //   'poz 2 ' + entities[8].position[0] + '   ' + entities[8].position[1],
+        // );
+        x = entities[id].position[0] ;
+        y = 684 * renderers[id]._animatedValue;
+        if (
+          Math.abs(entities[8].position[0] - x) < 64 &&
+          Math.abs(entities[8].position[1]-270 - y) < 64
+        ) {
+          entities[id].hit = 1;
+          if (entities[id].hited) {
+            pkt = pkt + 1;
+            console.log('trafione');
+            entities[id].hited = 0;
+          }
+        }
       }
 
       if (renderers[id] && !renderers[id].isMoving) {
@@ -49,15 +66,15 @@ const VirusSpawner = (entities, {touches, time}) => {
       let id = entities[key].id;
       if (renderers[id] && !renderers[id].isMoving) {
         // "uspiony" za krawedzią ekranu
-       
+
         if (shoot) {
           // czestotliwosc wypuszczania nowych wirusow = 10/1000 = 0.01 (czyli 1 raz na 100 tikow)
           entities[id].position = [
             entities[2].position[0],
-            entities[2].position[1]+100,
+            entities[2].position[1] + 100,
           ]; // losowa pozycja x
           renderers[id].play(2000); // losowy czas animacji (przelotu przez cały ekran) 4-8s
-          shoot = false
+          shoot = false;
         }
       }
     }
@@ -97,11 +114,11 @@ const MoveFighter = (entities, {touches}) => {
     .filter((t) => t.type === 'press')
     .forEach((t) => {
       let sight = entities[3];
-      console.log(t);
-      console.log(sight.position);
-      console.log(
-        'jestemmm ' + t['event']['locationX'] + ' ' + t['event']['locationY'],
-      );
+      // console.log(t);
+      // console.log(sight.position);
+      // console.log(
+      //   'jestemmm ' + t['event']['locationX'] + ' ' + t['event']['locationY'],
+      // );
       if (
         sight &&
         sight.position[0] > t.event.locationX - 50 &&
@@ -109,8 +126,11 @@ const MoveFighter = (entities, {touches}) => {
         sight.position[1] > t.event.locationY - 70 &&
         sight.position[1] < t.event.locationY - 30
       ) {
-        console.log('srzał ');
-        shoot=true
+        console.log('Shoot');
+        console.log(entities[8].position);
+        console.log(entities[4].position);
+
+        shoot = true;
       }
     });
   return entities;
