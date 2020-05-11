@@ -1,4 +1,3 @@
-
 const VirusSpawner = (entities, { touches, time }) => {
   
   // petla logiki jest uruchamiana co 16ms... w teorii, w praktyce sa to pobozne zyczenia
@@ -9,9 +8,8 @@ const VirusSpawner = (entities, { touches, time }) => {
 
   for (var key in entities) 
     if (entities[key].type == 'v') { // wirusy
-
       let id = entities[key].id;
-      
+      entities[7].lifes = lifes;
       if (renderers[id] && renderers[id].isMoving) { // porusza sie
         // przyblizona (ostatnia) pozycja y wirusa
         // _animatedValue jest uaktualnane asynchronicznie callbackiem
@@ -21,8 +19,15 @@ const VirusSpawner = (entities, { touches, time }) => {
         let y = 684*renderers[id]._animatedValue+40;
         
         if (Math.abs(entities[2].position[0]+64 - x) < 64 &&
-            Math.abs(entities[2].position[1]+64 - y) < 64)
-          entities[id].hit = 1;
+            Math.abs(entities[2].position[1]+64 - y) < 64){
+              entities[id].hit = 1;
+              console.log('zycia ' + lifes);
+              if (entities[id].hited){
+                  lifes = lifes - 1;
+                  entities[7].lifes = lifes;
+                  entities[id].hited = 0;
+              }
+            }
       }
            
       if (renderers[id] && !renderers[id].isMoving) { // "uspiony" za krawedzią ekranu
@@ -30,6 +35,7 @@ const VirusSpawner = (entities, { touches, time }) => {
         if (d < 10) { // czestotliwosc wypuszczania nowych wirusow = 10/1000 = 0.01 (czyli 1 raz na 100 tikow)
           entities[id].position = [(412-80)*Math.random(), 0]; // losowa pozycja x
           entities[id].hit = 0;
+          entities[id].hited = 1;
           renderers[id].play(4000 + 4000*Math.random()); // losowy czas animacji (przelotu przez cały ekran) 4-8s
         }
       }
