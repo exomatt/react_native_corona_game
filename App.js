@@ -42,11 +42,6 @@ class BestGameEver extends PureComponent {
     super();
   }
 
-  componentWillMount() {
-    console.log('montuje sie ');
-    global.lifes = 3;
-  }
-
   onSelect = () => {
      global.lifes = 3;
   };
@@ -89,7 +84,7 @@ class BestGameEver extends PureComponent {
             type: 's',
             position: [width / 2 - 40, height - 280],
             renderer: <Sight />,
-          }, // fajter
+          }, // celownik
           4: {id: 4, type: 'v', position: [10, 0], renderer: Virus}, // zaraza
           5: {id: 5, type: 'v', position: [20, 0], renderer: Virus},
           6: {id: 6, type: 'v', position: [40, 0], renderer: Virus},

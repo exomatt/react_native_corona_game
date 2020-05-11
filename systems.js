@@ -21,7 +21,6 @@ const VirusSpawner = (entities, { touches, time }) => {
         if (Math.abs(entities[2].position[0]+64 - x) < 64 &&
             Math.abs(entities[2].position[1]+64 - y) < 64){
               entities[id].hit = 1;
-              console.log('zycia ' + lifes);
               if (entities[id].hited){
                   lifes = lifes - 1;
                   entities[7].lifes = lifes;
@@ -55,26 +54,45 @@ const MoveFighter = (entities, { touches }) => {
   //-- Example: return { ...entities, t.id: { UPDATED COMPONENTS }};
   //-- That said, it's probably worth considering performance implications in either case.
  
-  touches.filter(t => t.type === "move").forEach(t => {
-       
-    let finger = entities[2];
-    let finger2 = entities[3];
+  touches.filter(t => t.type === "move").forEach(t => { 
+    let fighter = entities[2];
+    let sight = entities[3];
     
-    if (finger && finger.position) {
-      finger.position = [
-        finger.position[0] + t.delta.pageX,
-        finger.position[1] + t.delta.pageY
+    if (fighter && fighter.position) {
+      fighter.position = [
+        fighter.position[0] + t.delta.pageX,
+        fighter.position[1] + t.delta.pageY
       ];
     }
-     if (finger2 && finger2.position) {
-       finger2.position = [
-         finger2.position[0] + t.delta.pageX,
-         finger2.position[1] + t.delta.pageY,
+     if (sight && sight.position) {
+       sight.position = [
+         sight.position[0] + t.delta.pageX,
+         sight.position[1] + t.delta.pageY,
        ];
      }
     
   });
-  
+
+  touches
+    .filter((t) => t.type === 'press')
+    .forEach((t) => {
+      let sight = entities[3];
+      console.log(t)
+      console.log(sight.position);
+      console.log(
+        'jestemmm ' + t['event']['locationX'] + ' ' + t['event']['locationY'],
+      );
+      if (
+        sight &&
+        sight.position[0] > t.event.locationX - 50 &&
+        sight.position[0] < t.event.locationX - 30 &&
+        sight.position[1] > t.event.locationY - 70 &&
+        sight.position[1] < t.event.locationY - 30
+      ) {
+        console.log('srzał ');
+      }
+    }
+    )
   return entities;
 };
  
