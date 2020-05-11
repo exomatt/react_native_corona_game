@@ -16,6 +16,7 @@ import Result from './components/Result';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import 'react-native-gesture-handler';
+import Bullet from './components/Bullet';
 
 global.renderers = [];
 global.lifes = 3;
@@ -94,6 +95,12 @@ class BestGameEver extends PureComponent {
             position: [40, 20],
             renderer: <Bar />,
             navigation: this.props.navigation,
+          },
+          8: {
+            id: 8,
+            type: 'p',
+            position: [width, height],
+            renderer: Bullet,
           },
         }}>
         <StatusBar hidden={true} />
