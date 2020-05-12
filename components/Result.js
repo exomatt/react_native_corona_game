@@ -7,7 +7,7 @@ const Result = ({route}) => {
   const {result} = route.params;
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Wynik: {pkt} pkt.</Text>
+      <Text style={styles.text}>Result: {pkt} points.</Text>
       <TouchableOpacity
         style={styles.item}
         onPress={() => {

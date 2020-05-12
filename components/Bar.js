@@ -9,8 +9,8 @@ class Bar extends PureComponent {
 
   play = () => {};
   onSelect = () => {
-    lifes=3;
-    pkt=0;
+    lifes = 3;
+    pkt = 0;
   };
 
   render() {
@@ -57,6 +57,14 @@ class Bar extends PureComponent {
           }}>
           Lives:
           {lis}
+        </Text>
+        <Text
+          style={{
+            marginLeft: 20,
+            fontSize: 26,
+            color: 'orange',
+          }}>
+          Points: {this.props.pkt}
         </Text>
       </View>
     );

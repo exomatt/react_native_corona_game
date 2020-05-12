@@ -13,10 +13,15 @@ import {MoveFighter, VirusSpawner} from './systems';
 import Sight from './components/Sight';
 import Bar from './components/Bar';
 import Result from './components/Result';
+import LetterP from './components/LetterP';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 import Bullet from './components/Bullet';
+import Digit5 from './components/Digit5';
+import Minus from './components/Minus';
+import Heart from './components/Heart';
+import Bomb from './components/Bomb';
 
 global.renderers = [];
 global.lifes = 3;
@@ -102,6 +107,11 @@ class BestGameEver extends PureComponent {
             position: [width, height],
             renderer: Bullet,
           },
+          9: {id: 9, type: 'e', position: [30, 0], renderer: LetterP},
+          10: {id: 10, type: '5', position: [10, 0], renderer: Digit5},
+          11: {id: 11, type: '-', position: [40, 0], renderer: Minus},
+          12: {id: 12, type: 'h', position: [20, 0], renderer: Heart},
+          13: {id: 13, type: 'T', position: [20, 0], renderer: Bomb},
         }}>
         <StatusBar hidden={true} />
       </GameEngine>

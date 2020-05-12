@@ -11,6 +11,7 @@ const VirusSpawner = (entities, {touches, time}) => {
       // wirusy
       let id = entities[key].id;
       entities[7].lifes = lifes;
+      entities[7].pkt = pkt;
       if (renderers[id] && renderers[id].isMoving) {
         // porusza sie
         // przyblizona (ostatnia) pozycja y wirusa
@@ -35,11 +36,11 @@ const VirusSpawner = (entities, {touches, time}) => {
         // console.log(
         //   'poz 2 ' + entities[8].position[0] + '   ' + entities[8].position[1],
         // );
-        x = entities[id].position[0] ;
+        x = entities[id].position[0];
         y = 684 * renderers[id]._animatedValue;
         if (
           Math.abs(entities[8].position[0] - x) < 64 &&
-          Math.abs(entities[8].position[1]-270 - y) < 64
+          Math.abs(entities[8].position[1] - 270 - y) < 64
         ) {
           entities[id].hit = 1;
           if (entities[id].hited) {
@@ -62,6 +63,7 @@ const VirusSpawner = (entities, {touches, time}) => {
         }
       }
     }
+    // pocisk
     if (entities[key].type == 'p') {
       let id = entities[key].id;
       if (renderers[id] && !renderers[id].isMoving) {
@@ -78,6 +80,278 @@ const VirusSpawner = (entities, {touches, time}) => {
         }
       }
     }
+    // extra points
+    if (entities[key].type == 'e') {
+      let id = entities[key].id;
+      if (renderers[id] && renderers[id].isMoving) {
+        // porusza sie
+        // przyblizona (ostatnia) pozycja y wirusa
+        // _animatedValue jest uaktualnane asynchronicznie callbackiem
+        //console.log(renderers[id]._animatedValue);
+
+        let x = entities[id].position[0] + 40;
+        let y = 684 * renderers[id]._animatedValue + 40;
+
+        if (
+          Math.abs(entities[2].position[0] + 64 - x) < 64 &&
+          Math.abs(entities[2].position[1] + 64 - y) < 64
+        ) {
+          entities[id].hit = 1;
+          if (entities[id].hited) {
+            pkt = pkt + 10;
+            entities[7].pkt = pkt;
+            entities[id].hited = 0;
+          }
+        }
+      }
+
+      if (renderers[id] && !renderers[id].isMoving) {
+        // "uspiony" za krawedzią ekranu
+        let d = 2000 * Math.random();
+        if (d < 10) {
+          // czestotliwosc wypuszczania nowych punktow = 10/2000 = 0.005 (czyli 1 raz na 200 tikow)
+          entities[id].position = [(412 - 80) * Math.random(), 0]; // losowa pozycja x
+          entities[id].hit = 0;
+          entities[id].hited = 1;
+          renderers[id].play(4000 + 4000 * Math.random()); // losowy czas animacji (przelotu przez cały ekran) 4-8s
+        }
+      }
+    }
+
+    // extra points
+    if (entities[key].type == 'e') {
+      let id = entities[key].id;
+      if (renderers[id] && renderers[id].isMoving) {
+        // porusza sie
+        // przyblizona (ostatnia) pozycja y wirusa
+        // _animatedValue jest uaktualnane asynchronicznie callbackiem
+        //console.log(renderers[id]._animatedValue);
+
+        let x = entities[id].position[0] + 40;
+        let y = 684 * renderers[id]._animatedValue + 40;
+
+        if (
+          Math.abs(entities[2].position[0] + 64 - x) < 64 &&
+          Math.abs(entities[2].position[1] + 64 - y) < 64
+        ) {
+          entities[id].hit = 1;
+          if (entities[id].hited) {
+            pkt = pkt + 10;
+            entities[7].pkt = pkt;
+            entities[id].hited = 0;
+          }
+        }
+      }
+
+      if (renderers[id] && !renderers[id].isMoving) {
+        // "uspiony" za krawedzią ekranu
+        let d = 2000 * Math.random();
+        if (d < 10) {
+          // czestotliwosc wypuszczania nowych punktow = 10/2000 = 0.005 (czyli 1 raz na 200 tikow)
+          entities[id].position = [(412 - 80) * Math.random(), 0]; // losowa pozycja x
+          entities[id].hit = 0;
+          entities[id].hited = 1;
+          renderers[id].play(4000 + 4000 * Math.random()); // losowy czas animacji (przelotu przez cały ekran) 4-8s
+        }
+      }
+    } // extra points
+    if (entities[key].type == 'e') {
+      let id = entities[key].id;
+      if (renderers[id] && renderers[id].isMoving) {
+        // porusza sie
+        // przyblizona (ostatnia) pozycja y wirusa
+        // _animatedValue jest uaktualnane asynchronicznie callbackiem
+        //console.log(renderers[id]._animatedValue);
+
+        let x = entities[id].position[0] + 40;
+        let y = 684 * renderers[id]._animatedValue + 40;
+
+        if (
+          Math.abs(entities[2].position[0] + 64 - x) < 64 &&
+          Math.abs(entities[2].position[1] + 64 - y) < 64
+        ) {
+          entities[id].hit = 1;
+          if (entities[id].hited) {
+            pkt = pkt + 10;
+            entities[7].pkt = pkt;
+            entities[id].hited = 0;
+          }
+        }
+      }
+
+      if (renderers[id] && !renderers[id].isMoving) {
+        // "uspiony" za krawedzią ekranu
+        let d = 4000 * Math.random();
+        if (d < 10) {
+          // czestotliwosc wypuszczania nowych punktow = 10/2000 = 0.005 (czyli 1 raz na 200 tikow)
+          entities[id].position = [(412 - 80) * Math.random(), 0]; // losowa pozycja x
+          entities[id].hit = 0;
+          entities[id].hited = 1;
+          renderers[id].play(4000 + 4000 * Math.random()); // losowy czas animacji (przelotu przez cały ekran) 4-8s
+        }
+      }
+    }
+
+    // extra points
+    if (entities[key].type == '5') {
+      let id = entities[key].id;
+      if (renderers[id] && renderers[id].isMoving) {
+        // porusza sie
+        // przyblizona (ostatnia) pozycja y wirusa
+        // _animatedValue jest uaktualnane asynchronicznie callbackiem
+        //console.log(renderers[id]._animatedValue);
+
+        let x = entities[id].position[0] + 40;
+        let y = 684 * renderers[id]._animatedValue + 40;
+
+        if (
+          Math.abs(entities[2].position[0] + 64 - x) < 64 &&
+          Math.abs(entities[2].position[1] + 64 - y) < 64
+        ) {
+          entities[id].hit = 1;
+          if (entities[id].hited) {
+            pkt = pkt + 5;
+            entities[7].pkt = pkt;
+            entities[id].hited = 0;
+          }
+        }
+      }
+
+      if (renderers[id] && !renderers[id].isMoving) {
+        // "uspiony" za krawedzią ekranu
+        let d = 2000 * Math.random();
+        if (d < 10) {
+          // czestotliwosc wypuszczania nowych punktow = 10/2000 = 0.005 (czyli 1 raz na 200 tikow)
+          entities[id].position = [(412 - 80) * Math.random(), 0]; // losowa pozycja x
+          entities[id].hit = 0;
+          entities[id].hited = 1;
+          renderers[id].play(4000 + 4000 * Math.random()); // losowy czas animacji (przelotu przez cały ekran) 4-8s
+        }
+      }
+    }
+
+    // minus points
+    if (entities[key].type == '-') {
+      let id = entities[key].id;
+      if (renderers[id] && renderers[id].isMoving) {
+        // porusza sie
+        // przyblizona (ostatnia) pozycja y wirusa
+        // _animatedValue jest uaktualnane asynchronicznie callbackiem
+        //console.log(renderers[id]._animatedValue);
+
+        let x = entities[id].position[0] + 40;
+        let y = 684 * renderers[id]._animatedValue + 40;
+
+        if (
+          Math.abs(entities[2].position[0] + 64 - x) < 64 &&
+          Math.abs(entities[2].position[1] + 64 - y) < 64
+        ) {
+          entities[id].hit = 1;
+          if (entities[id].hited) {
+            let random = Math.floor(Math.random() * (10 - 1)) + 1;
+            pkt = pkt - random;
+            entities[7].pkt = pkt;
+            entities[id].hited = 0;
+          }
+        }
+      }
+
+      if (renderers[id] && !renderers[id].isMoving) {
+        // "uspiony" za krawedzią ekranu
+        let d = 2000 * Math.random();
+        if (d < 10) {
+          // czestotliwosc wypuszczania nowych punktow = 10/2000 = 0.005 (czyli 1 raz na 200 tikow)
+          entities[id].position = [(412 - 80) * Math.random(), 0]; // losowa pozycja x
+          entities[id].hit = 0;
+          entities[id].hited = 1;
+          renderers[id].play(4000 + 4000 * Math.random()); // losowy czas animacji (przelotu przez cały ekran) 4-8s
+        }
+      }
+    }
+
+    // heart
+    if (entities[key].type == 'h') {
+      let id = entities[key].id;
+      if (renderers[id] && renderers[id].isMoving) {
+        // porusza sie
+        // przyblizona (ostatnia) pozycja y wirusa
+        // _animatedValue jest uaktualnane asynchronicznie callbackiem
+        //console.log(renderers[id]._animatedValue);
+
+        let x = entities[id].position[0] + 40;
+        let y = 684 * renderers[id]._animatedValue + 40;
+
+        if (
+          Math.abs(entities[2].position[0] + 64 - x) < 64 &&
+          Math.abs(entities[2].position[1] + 64 - y) < 64
+        ) {
+          entities[id].hit = 1;
+          if (entities[id].hited) {
+            let random = Math.floor(Math.random() * (10 - 1)) + 1;
+            if (lifes < 7) {
+              lifes = lifes + 1;
+              entities[7].lifes = lifes;
+            }
+            entities[id].hited = 0;
+          }
+        }
+      }
+
+      if (renderers[id] && !renderers[id].isMoving) {
+        // "uspiony" za krawedzią ekranu
+        let d = 6000 * Math.random();
+        if (d < 10) {
+          // czestotliwosc wypuszczania nowych punktow = 10/2000 = 0.005 (czyli 1 raz na 200 tikow)
+          entities[id].position = [(412 - 80) * Math.random(), 0]; // losowa pozycja x
+          entities[id].hit = 0;
+          entities[id].hited = 1;
+          renderers[id].play(4000 + 4000 * Math.random()); // losowy czas animacji (przelotu przez cały ekran) 4-8s
+        }
+      }
+    }
+
+    // bomb 
+    if (entities[key].type == 'T') {
+      let id = entities[key].id;
+      if (renderers[id] && renderers[id].isMoving) {
+        // porusza sie
+        // przyblizona (ostatnia) pozycja y wirusa
+        // _animatedValue jest uaktualnane asynchronicznie callbackiem
+        //console.log(renderers[id]._animatedValue);
+
+        let x = entities[id].position[0] + 40;
+        let y = 684 * renderers[id]._animatedValue + 40;
+
+        if (
+          Math.abs(entities[2].position[0] + 64 - x) < 64 &&
+          Math.abs(entities[2].position[1] + 64 - y) < 64
+        ) {
+          entities[id].hit = 1;
+          if (entities[id].hited) {
+            for (var key in entities) {
+               if (entities[key].type == 'v') {
+                 let id = entities[key].id;
+                 entities[id].hit = 1;
+                 entities[id].hited = 0;
+               }
+            }
+          }
+        }
+      }
+
+      if (renderers[id] && !renderers[id].isMoving) {
+        // "uspiony" za krawedzią ekranu
+        let d = 4000 * Math.random();
+        if (d < 10) {
+          // czestotliwosc wypuszczania nowych punktow = 10/2000 = 0.005 (czyli 1 raz na 200 tikow)
+          entities[id].position = [(412 - 80) * Math.random(), 0]; // losowa pozycja x
+          entities[id].hit = 0;
+          entities[id].hited = 1;
+          renderers[id].play(4000 + 4000 * Math.random()); // losowy czas animacji (przelotu przez cały ekran) 4-8s
+        }
+      }
+    }
+
   }
   return entities;
 };
