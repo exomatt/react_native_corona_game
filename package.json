@@ -20,6 +20,7 @@
     "react-native-reanimated": "^1.8.0",
     "react-native-safe-area-context": "^1.0.0",
     "react-native-screens": "^2.7.0",
+    "react-native-sensors": "^5.4.1",
     "react-navigation": "^4.3.9",
     "rn-sprite-sheet": "^1.1.9"
   },

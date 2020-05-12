@@ -14,7 +14,7 @@ const Result = ({route}) => {
           route.params.updateData();
           navigation.goBack();
         }}>
-        <Text style={styles.text}>Restart</Text>
+        <Text style={styles.title}>Restart</Text>
       </TouchableOpacity>
     </View>
   );
@@ -24,6 +24,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#e3dcdc',
+  },
+  item: {
+    backgroundColor: '#9933ff',
+    marginVertical: 8,
+    marginHorizontal: 16,
+    padding: 15,
+    margin: 5,
+    marginLeft: 10,
+    marginRight: 10,
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 26,
+    color: '#FFFFFF',
   },
   text: {
     width: '90%',
